@@ -1,7 +1,7 @@
 FROM java:7-jre
 
 ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64/jre
-ENV GRAYLOG_VERSION 1.0.2
+ENV GRAYLOG_VERSION 1.2.0
 
 RUN wget -P /tmp https://packages.graylog2.org/releases/graylog2-server/graylog-${GRAYLOG_VERSION}.tgz && \
     tar -xzvf /tmp/graylog-${GRAYLOG_VERSION}.tgz && \

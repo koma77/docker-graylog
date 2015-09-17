@@ -3,6 +3,7 @@ server:
   ports:
    - "9350:9350"
    - "12900:12900"
+   - "12201/udp:12201/udp"
   links:
     - elasticsearch
     - mail
