@@ -1,31 +1,29 @@
-server:
-  build: ./server/
-  ports:
-   - "9350:9350"
-   - "12900:12900"
-   - "12201/udp:12201/udp"
-  links:
-    - elasticsearch
-    - mail
-    - mongodb
-  environment:
-    GRAYLOG_SMTP_ENABLED: true
-web:
-  build: ./web/
-  ports:
-   - "9000:9000"
-  links:
-    - server
-elasticsearch:
-  image: elasticsearch
-  ports:
-   - "9200:9200"
-   - "9300:9300"
-mongodb:
-  image: mongo
-  ports:
-   - "27017:27017"
-mail:
-  image: tianon/exim4
-  ports:
-   - "25:25"
+version: '2'
+services:
+  mongo:
+    image: mongo:2
+    ports:
+      - "27017:27017"
+  elasticsearch:
+    image: elasticsearch:2
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+  server:
+    build: ./
+    ports:
+     - "9000:9000"
+    depends_on:
+      - elasticsearch
+      - mongo
+    environment:
+      GRAYLOG_ELASTICSEARCH_CLUSTER_NAME: elasticsearch
+  slave:
+    build: ./
+    depends_on:
+      - elasticsearch
+      - mongo
+    environment:
+      GRAYLOG_IS_MASTER: "false"
+      GRAYLOG_WEB_ENABLE: "false"
+      GRAYLOG_ELASTICSEARCH_CLUSTER_NAME: elasticsearch

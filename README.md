@@ -1,9 +1,4 @@
-# docker-graylog
+# Graylog-server Docker Container
 
-This is a strip-down version instead of official graylog/allinone docker image for splitting the roles into images.
-The images are splitted into
-* graylog-server
-* graylog-web
-
-READMEs are included in the sub-directories.
-
+This is a modified version of official graylog2/server with geoip database and auth sso plugin.
+The container accepts the same environment variables as specified in graylog2/server.
