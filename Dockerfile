@@ -1,4 +1,4 @@
-FROM graylog2/server:2.1.2-1
+FROM graylog2/server:2.2.3-1
 
 RUN mkdir -p /usr/share/GeoIP && \
 	wget -P /usr/share/GeoIP http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz && \
